@@ -1,0 +1,30 @@
+#
+INST_DIR = $(HOME)/bin
+BIN  = aftani_c_pgl_eq
+
+fflags = -O2 -Wall -ffixed-line-length-none -m32
+cflags = -O2 -Wall -m32
+
+LDLIBS =   -L/home/cola/a/zhenxu2/lib/FFTW/lib -lfftw3
+
+FFLAGS = $(DBG) $(fflags)
+
+CFLAGS = $(DBG) $(cflags)
+
+FC = f77
+
+CC = gcc
+
+DBG =
+
+FOBJS = driver_c.o swapn.o aftanpg.o aftanipg.o ftfilt.o fmax.o taper.o \
+	trigger.o tapers.o tgauss.o mspline.o pred_cur.o misc.o phtovel.o
+
+$(BIN) : $(FOBJS)
+	$(FC) $(FFLAGS) $(CFLAGS) $(FOBJS) -o $(BIN) $(LDLIBS) 
+
+install :: $(BIN)
+	install -s $(BIN) $(INST_DIR)
+
+clean ::
+	rm -f $(BIN) core $(FOBJS)

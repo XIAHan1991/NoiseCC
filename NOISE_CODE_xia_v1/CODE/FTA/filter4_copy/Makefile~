@@ -1,0 +1,32 @@
+#
+INST_DIR = $(HOME)/bin
+BIN  = filter4
+
+fflags = -O2 -Wall -ffixed-line-length-none -m32
+cflags = -O2 -Wall -m32
+#fflags = -O2 -Wall -ffixed-line-length-none 
+#cflags = -O2 -Wall 
+
+LDLIBS = -L/home/zhoulq/noise/NOISE_CODA/FTA/aftani_c_pgl -lfftw3 -lm -m32
+#LDLIBS = -L/usr/local/lib -lfftw3 -lm
+#LDLIBS = -L./ -lfftw3
+FFLAGS = $(DBG) $(fflags)
+
+CFLAGS = $(DBG) $(cflags)
+
+FC = g77
+
+CC = gcc
+
+DBG = -g
+
+FOBJS = driver_c.o filter4.o swapn.o
+
+$(BIN) : $(FOBJS)
+	$(FC) $(FFLAGS) $(CFLAGS) $(FOBJS) -o $(BIN) $(LDLIBS) 
+
+install :: $(BIN)
+	install -s $(BIN) $(INST_DIR)
+
+clean ::
+	rm -f $(BIN) core $(FOBJS)

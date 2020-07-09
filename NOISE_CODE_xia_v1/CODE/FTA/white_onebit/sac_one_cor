@@ -1,0 +1,5 @@
+/opt/sac100/sac/bin/sac << END
+r test.sac
+w smooth.sac
+quit
+END

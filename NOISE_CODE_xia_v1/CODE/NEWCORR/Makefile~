@@ -1,0 +1,35 @@
+#
+INST_DIR = ../../bin
+
+BIN  = justCOR
+
+
+fflags = -O2 -ffixed-line-length-none -m32
+#fflags = -fast -Mextend -Msave
+#fflags =  -O -e
+#cflags = -O2 -Wall -m32
+cflags =  -m32
+# if you don't use shared libraries comment the next line
+#shlib = -R/opt/SUNWspro/lib
+
+FFLAGS = $(DBG)  $(fflags) $(shlib)
+
+CFLAGS = $(DBG)  $(cflags)
+
+#LDLIBS = -L/home/xinlei/FFTW/lib -lfftw3
+LDLIBS = -L/b/xianhan/NOISE/lib/FFTW/lib -lfftw3
+
+FC = g77
+
+DBG = 
+
+FOBJS = dcommon.o dmultifft.o yangjustCOR.o
+
+$(BIN) : $(FOBJS)
+	$(FC) $(FFLAGS) $(CFLAGS) $(FOBJS) -o $(BIN) $(LDLIBS)
+
+install :: $(BIN)
+	install  -s $(BIN) $(INST_DIR)
+
+clean ::
+	rm -f $(BIN) core $(FOBJS)

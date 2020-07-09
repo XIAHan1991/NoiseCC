@@ -1,0 +1,61 @@
+#------ Parameter for Noise Cross-Corrleation -----------#
+
+#-------Main Directory-------#
+main_dir =  /PARA/pp466/PKUSummer/NoiseCC
+# Contain data file and station list
+# data store format is :
+#   xxxxx/2000_1_1_0_0_0/yyyy.LHZ.SAC
+#   xxxxx in file_dir and yyyy in station.lst.all
+
+#------Code Directory -------#
+
+code_dir = /PARA/pp466/PKUSummer/NOISE_CODE_xia_v1/CODE
+
+# Contain code file:
+#   SET_SACDB, CUT_TRANS, FTA, NEWCORR, STACK ....
+
+#--------Cut Window ---------#
+# Make sure each trace have same length
+#Example:
+# cut_start_time = 1000
+# cut_length = 84000
+
+cut_start_time = 1000
+
+cut_length = 84000
+
+# the cut_start_time means the start time related to day file (2000-1-1 00:00:00)
+# cut_length means the total number cutting points 
+# PS: the length of time windows is (cut_length * delta) s
+
+# ----- Filter Period ---------#
+# Example:
+# filter_range = [51, 50, 5, 4]
+
+filter_range = [51, 50, 5, 4]
+
+# The process of filtering use bandpass filter
+# filter_range[0] and filter_range[3] means the max and min period
+# filter_range[1] and filter_range[2] shows corner period 
+# the unit of parameter is second
+
+# ----- Cross Correlation -----#
+# Example:
+# correlation_length = 5000
+
+correlation_length = 5000
+
+# The cross correlation window 
+# It is the number of points
+# PS: This parameter domanate the maxium time of the result
+#     (correlation_length * delta)
+
+# ------ Stack Traces --------#
+# Example:
+# thresold_days = 20
+
+thresold_days = 20
+# Control the threold days for each month file,
+# To get stable singal, we should have enough record in one month.
+# as a result, station pairs less than 'thresold_days' are ignored.
+#
