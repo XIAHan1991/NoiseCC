@@ -1,0 +1,23 @@
+sac << END
+r COR_H1530_H1620.SAC
+ch kevnm H1530
+w COR_H1530_H1620.SAC
+cut 0 5000
+r COR_H1530_H1620.SAC
+ch o 0
+ch kevnm H1530
+w COR_H1530_H1620.SAC_p
+cut -5000 0
+r COR_H1530_H1620.SAC
+reverse
+ch b 0
+ch e 5000
+ch o 0
+w COR_H1530_H1620.SAC_n
+cut off
+addf COR_H1530_H1620.SAC_p
+ch o 0
+div 2
+w COR_H1530_H1620.SAC_s
+END
+

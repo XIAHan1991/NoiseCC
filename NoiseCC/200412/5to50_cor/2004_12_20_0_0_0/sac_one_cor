@@ -1,0 +1,10 @@
+sac << END
+r ft_H1530.LHZ.sac.ph
+abs
+smooth mean h 40
+w a.avg 
+r ft_H1530.LHZ.sac.ph
+divf a.avg
+w smooth.sac
+quit
+END
